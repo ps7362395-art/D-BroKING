@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b6e6e">
+  <meta name="description" content="Contact Dabba Broking for information about futures, options and MCX commodity trading, brokerage and margin requirements.">
+  <title>Dabba Broking | Futures, Options &amp; Commodities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f2f5f7; --panel:#fff; --ink:#0f2230; --muted:#5a6b78;
+      --line:#d5dde3; --brand:#0b6e6e; --brand-ink:#fff;
+      --up:#1b7f4b; --down:#b8322f; --warn-bg:#fff4e0;
+      --warn-ink:#6b4300; --warn-line:#e8c27a; --radius:14px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme:dark; --bg:#0c171f; --panel:#13222d; --ink:#e6eef3;
+        --muted:#93a5b2; --line:#263947; --brand:#3fb5b0; --brand-ink:#06201f;
+        --up:#4cc38a; --down:#f0706c; --warn-bg:#2a2110;
+        --warn-ink:#f0d9a6; --warn-line:#6b531f;
+      }
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:20px; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:400 17px/1.6 "Source Sans 3",system-ui,sans-serif; }
+    a { color:var(--brand); }
+    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid var(--brand); outline-offset:3px; }
+    h1,h2,h3,.logo { font-family:"Bricolage Grotesque",sans-serif; line-height:1.15; letter-spacing:-.02em; }
+    h1 { font-size:clamp(2.2rem,7vw,3.8rem); font-weight:800; max-width:15ch; margin:0 0 20px; }
+    h2 { font-size:clamp(1.7rem,4.5vw,2.3rem); margin:0 0 22px; }
+    h3 { font-size:1.2rem; margin:0 0 10px; }
+    p { margin:0 0 1em; max-width:65ch; }
+    .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+    .top { display:flex; justify-content:space-between; align-items:center; gap:15px; padding:18px 0; }
+    .logo { font-size:1.45rem; font-weight:800; }
+    .logo span { color:var(--brand); }
+    .button { display:inline-flex; justify-content:center; align-items:center; gap:8px; background:var(--brand); color:var(--brand-ink); text-decoration:none; font:inherit; font-weight:700; padding:11px 17px; border:0; border-radius:9px; cursor:pointer; }
+    .button:hover { opacity:.88; }
+    .button-full { width:100%; padding:14px; }
+    .hero { display:grid; grid-template-columns:1fr; gap:30px; padding:36px 0 48px; }
+    .lead { font-size:1.15rem; color:var(--muted); }
+    .ticks { list-style:none; padding:0; margin:22px 0; }
+    .ticks li { position:relative; padding-left:29px; margin-bottom:12px; }
+    .ticks li::before { content:""; position:absolute; left:3px; top:8px; width:12px; height:7px; border-left:3px solid var(--brand); border-bottom:3px solid var(--brand); transform:rotate(-45deg); }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; min-width:0; }
+    label { display:block; font-weight:700; font-size:.96rem; margin:0 0 5px; }
+    input,select,textarea { display:block; width:100%; font:inherit; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:11px 12px; margin:0 0 15px; }
+    input,select { min-height:48px; }
+    textarea { min-height:90px; resize:vertical; }
+    .note { font-size:.88rem; color:var(--muted); margin:12px 0 0; }
+    .status { display:none; margin:12px 0 0; font-weight:700; overflow-wrap:anywhere; }
+    section { padding:45px 0; border-top:1px solid var(--line); }
+    .grid3 { display:grid; grid-template-columns:1fr; gap:16px; }
+    .grid3 .card p { margin-bottom:0; color:var(--muted); }
+    .row2 { display:grid; grid-template-columns:1fr; gap:0 14px; }
+    .calc-out { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:10px; }
+    .metric { background:var(--bg); border-radius:10px; padding:13px; overflow-wrap:anywhere; }
+    .metric small { display:block; color:var(--muted); margin-bottom:5px; }
+    .metric b { display:block; font-family:"Bricolage Grotesque",sans-serif; font-size:clamp(1.15rem,4vw,1.55rem); line-height:1.25; }
+    .loss b { color:var(--down); }
+    .steps { list-style:none; counter-reset:steps; padding:0; margin:0; display:grid; gap:22px; }
+    .steps li { counter-increment:steps; position:relative; padding-left:48px; }
+    .steps li::before { content:counter(steps); position:absolute; left:0; top:0; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:var(--brand); color:var(--brand-ink); font-weight:700; }
+    .steps p { color:var(--muted); margin-bottom:0; }
+    .risk { background:var(--warn-bg); color:var(--warn-ink); border:1px solid var(--warn-line); border-radius:var(--radius); padding:22px; }
+    .risk p:last-child { margin-bottom:0; }
+    footer { border-top:1px solid var(--line); padding:30px 0 45px; color:var(--muted); font-size:.92rem; }
+    footer p { max-width:none; }
+    .contact-links { display:flex; flex-wrap:wrap; gap:12px 22px; margin-bottom:20px; }
+    .contact-links a { overflow-wrap:anywhere; }
+    @media (min-width:650px) { .grid3 { grid-template-columns:repeat(3,minmax(0,1fr)); } .row2 { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (min-width:880px) { .hero { grid-template-columns:1.1fr .9fr; align-items:start; padding-top:50px; } }
+    @media (max-width:380px) { .wrap { padding-left:14px; padding-right:14px; } .card { padding:17px; } .logo { font-size:1.2rem; } .top .button { padding:9px 12px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">Dabba Broking<span>.</span></div>
+    <a class="button" href="tel:+917984311434" aria-label="Call Dabba Broking">Call Us</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Futures, options and commodities. Clear information. Personal support.</h1>
+        <p class="lead">Looking to understand derivatives trading, brokerage charges or commodity contracts? Contact Dabba Broking to discuss your requirements with our team.</p>
+        <ul class="ticks">
+          <li>Information about index and stock futures and options</li>
+          <li>Information about MCX gold, silver, crude oil and natural gas</li>
+          <li>Transparent discussions about applicable brokerage, fees and margin</li>
+          <li>Personal assistance with your enquiries</li>
+        </ul>
+        <a class="button" href="#enquire">Request a Call Back</a>
+      </div>
+
+      <div class="card" id="enquire">
+        <h2 style="font-size:1.5rem">Request a call back</h2>
+        <form id="lead" novalidate>
+          <label for="name">Full name</label>
+          <input id="name" name="name" autocomplete="name" maxlength="100" placeholder="Enter your full name" required>
+
+          <label for="phone">Mobile number</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+91..." required>
+
+          <label for="seg">I want information about</label>
+          <select id="seg" name="segment">
+            <option>Futures &amp; Options</option>
+            <option>Commodities (MCX)</option>
+            <option>Both</option>
+          </select>
+
+          <label for="msg">Anything we should know? (optional)</label>
+          <textarea id="msg" name="message" maxlength="1000" placeholder="Write your enquiry here"></textarea>
+
+          <button class="button button-full" type="submit">Continue on WhatsApp</button>
+          <p class="note">WhatsApp opens with your enquiry details filled in. Review them and press Send in WhatsApp. Please do not share passwords, OTPs or sensitive financial information.</p>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <section>
+      <h2>What you can explore</h2>
+      <div class="grid3">
+        <div class="card">
+          <h3>Futures</h3>
+          <p>Learn about index and stock futures, contract specifications, margin requirements and trading costs.</p>
+        </div>
+        <div class="card">
+          <h3>Options</h3>
+          <p>Understand calls, puts, option premiums, expiry and the risks of buying or selling options.</p>
+        </div>
+        <div class="card">
+          <h3>Commodities</h3>
+          <p>Explore MCX commodity contracts, including bullion, energy and base metals, subject to eligibility and availability.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Estimate your brokerage</h2>
+      <div class="card">
+        <p>Enter an illustrative brokerage rate and traded value to estimate brokerage before other charges.</p>
+        <div class="row2">
+          <div>
+            <label for="rate">Brokerage rate (% of traded value)</label>
+            <input id="rate" type="number" inputmode="decimal" value="0.03" min="0" max="100" step="0.01">
+          </div>
+          <div>
+            <label for="orders">Traded value per day (₹)</label>
+            <input id="orders" type="number" inputmode="decimal" value="1000000" min="0" step="1000">
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="days">Trading days per month</label>
+            <input id="days" type="number" inputmode="numeric" value="20" min="0" max="31" step="1">
+          </div>
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <div class="metric"><small>Estimated per day</small><b id="perDay">₹0</b></div>
+          <div class="metric"><small>Estimated per month</small><b id="perMonth">₹0</b></div>
+        </div>
+        <p class="note">Illustrative estimate only. Actual brokerage may depend on the product, order and broker tariff. Exchange transaction charges, taxes, statutory levies and other fees are extra.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Understand the effect of leverage</h2>
+      <div class="card">
+        <p>Leverage allows exposure larger than your capital. This can magnify losses as well as gains.</p>
+        <div class="row2">
+          <div>
+            <label for="cap">Your capital (₹)</label>
+            <input id="cap" type="number" inputmode="decimal" value="100000" min="0" step="1000">
+          </div>
+          <div>
+            <label for="lev">Position size multiple</label>
+            <input id="lev" type="number" inputmode="decimal" value="5" min="1" max="1000" step="0.5">
+          </div>
+        </div>
+        <div class="row2">
+          <div>
+            <label for="mv">Adverse price move (%)</label>
+            <input id="mv" type="number" inputmode="decimal" value="2" min="0" max="100" step="0.5">
+          </div>
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <div class="metric"><small>Illustrative position size</small><b id="pos">₹0</b></div>
+          <div class="metric loss"><small>Illustrative loss</small><b id="loss">₹0</b></div>
+          <div class="metric loss"><small>Loss relative to capital</small><b id="lossPct">0%</b></div>
+          <div class="metric"><small>Capital remaining after loss</small><b id="left">₹0</b></div>
+        </div>
+        <p class="note">Simplified illustration, not a forecast or a margin calculator. Actual outcomes depend on contract rules, price gaps, slippage, charges, margin calls and liquidation. Losses can exceed the amount deposited.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to get started</h2>
+      <ol class="steps">
+        <li><h3>Send an enquiry</h3><p>Tell us which products you want to learn about using the WhatsApp form.</p></li>
+        <li><h3>Review charges and risks</h3><p>Ask for the applicable tariff, contract details, margin requirements and written risk disclosures.</p></li>
+        <li><h3>Verify the provider</h3><p>Independently verify the legal entity, regulator, registration and account-opening process before sharing documents or funds.</p></li>
+        <li><h3>Proceed only after verification</h3><p>Use only an appropriately regulated provider and an account in your own name. Never share OTPs or passwords.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="risk">
+        <h3>Important risk disclosure</h3>
+        <p>Futures, options and commodity derivatives are high-risk products and may not be suitable for all investors. Leverage can magnify losses, and you may lose all your capital or more. Past performance does not guarantee future results. Nothing on this website is investment advice, a recommendation to trade, or a promise of returns. Understand the product and its risks and seek independent professional advice if needed.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contact-links">
+      <span>Email: <a href="mailto:support@dabbbaking.ae">support@dabbbaking.ae</a></span>
+      <span>Phone: <a href="tel:+917984311434">+91 79843 11434</a></span>
+      <span>WhatsApp: <a href="https://wa.me/917984311434" target="_blank" rel="noopener noreferrer">Chat with us</a></span>
+    </div>
+    <p><strong>Business and regulatory information:</strong> Before publishing, enter the verified legal entity name, applicable registration and licence details, regulator, registered address and grievance contact, where required. Do not claim to be licensed or regulated unless the claim is accurate and verifiable.</p>
+    <p>Leveraged derivatives and commodity trading carries substantial risk. Read all applicable agreements and risk documents before making any financial decision.</p>
+    <p>© <span id="year"></span> Dabba Broking. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // WhatsApp number in international format: country code + number, digits only.
+  const WA_NUMBER = "917984311434";
+
+  const $ = (id) => document.getElementById(id);
+
+  function numericValue(id, min, max) {
+    const raw = $(id).value.trim();
+    if (raw === "") return 0;
+    const value = Number(raw);
+    if (!Number.isFinite(value)) return 0;
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function money(value) {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 2
+    }).format(Number.isFinite(value) ? value : 0);
+  }
+
+  function updateBrokerage() {
+    const rate = numericValue("rate", 0, 100);
+    const tradedValue = numericValue("orders", 0, Number.MAX_SAFE_INTEGER);
+    const days = numericValue("days", 0, 31);
+    const daily = tradedValue * rate / 100;
+    $("perDay").textContent = money(daily);
+    $("perMonth").textContent = money(daily * days);
+  }
+
+  function updateRisk() {
+    const capital = numericValue("cap", 0, Number.MAX_SAFE_INTEGER);
+    const leverage = numericValue("lev", 1, 1000);
+    const move = numericValue("mv", 0, 100);
+    const position = capital * leverage;
+    const loss = position * move / 100;
+    const lossShare = capital > 0 ? loss / capital * 100 : 0;
+    const remaining = capital - loss;
+
+    $("pos").textContent = money(position);
+    $("loss").textContent = money(loss);
+    $("lossPct").textContent = lossShare.toLocaleString("en-IN", {
+      maximumFractionDigits: 2
+    }) + "%";
+    $("left").textContent = remaining < 0
+      ? "₹0 or less"
+      : money(remaining);
+  }
+
+  ["rate", "orders", "days"].forEach(id => {
+    $(id).addEventListener("input", updateBrokerage);
+  });
+  ["cap", "lev", "mv"].forEach(id => {
+    $(id).addEventListener("input", updateRisk);
+  });
+
+  $("lead").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = $("name").value.trim();
+    const phone = $("phone").value.trim();
+    const digits = phone.replace(/\D/g, "");
+    const status = $("status");
+
+    status.style.display = "block";
+
+    if (name.length < 2) {
+      status.style.color = "var(--down)";
+      status.textContent = "Please enter your full name.";
+      $("name").focus();
+      return;
+    }
+
+    if (digits.length < 10 || digits.length > 15) {
+      status.style.color = "var(--down)";
+      status.textContent = "Please enter a valid mobile number including the country code if needed.";
+      $("phone").focus();
+      return;
+    }
+
+    const message = [
+      "Hello Dabba Broking, I would like to request a call back.",
+      "Name: " + name,
+      "Phone: " + phone,
+      "Interested in: " + $("seg").value,
+      $("msg").value.trim() ? "Enquiry: " + $("msg").value.trim() : ""
+    ].filter(Boolean).join("\n");
+
+    const whatsappURL = "https://wa.me/" + WA_NUMBER +
+      "?text=" + encodeURIComponent(message);
+
+    status.style.color = "var(--up)";
+    status.textContent = "Opening WhatsApp. Please review the message and press Send.";
+
+    const newWindow = window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    if (!newWindow) {
+      status.innerHTML = "";
+      status.append("WhatsApp could not open automatically. ");
+      const link = document.createElement("a");
+      link.href = whatsappURL;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Click here to continue on WhatsApp.";
+      status.appendChild(link);
+    }
+  });
+
+  $("year").textContent = new Date().getFullYear();
+  updateBrokerage();
+  updateRisk();
+})();
+</script>
+</body>
+</html>
